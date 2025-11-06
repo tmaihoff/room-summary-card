@@ -60,7 +60,7 @@ export class BrightnessSlider extends HassUpdateMixin(LitElement) {
    * Updates the card's state when Home Assistant state changes
    * @param {HomeAssistant} hass - The Home Assistant instance
    */
-  // @ts-ignore
+  // @ts-ignore - HassUpdateMixin provides the hass setter, but TypeScript sees this as an override conflict
   override set hass(hass: HomeAssistant) {
     this._hass = hass;
     this._updateBrightness();
@@ -89,7 +89,7 @@ export class BrightnessSlider extends HassUpdateMixin(LitElement) {
 
     // Fire hass-action event to change brightness
     if (this.entity?.config?.entity_id) {
-      // @ts-ignore
+      // @ts-ignore - 'hass-action' is a custom event not in the HASSDomEvents type definition
       fireEvent(this, 'hass-action', {
         config: {
           entity: this.entity.config.entity_id,
@@ -115,7 +115,7 @@ export class BrightnessSlider extends HassUpdateMixin(LitElement) {
     const target = e.target as HTMLElement;
     if (target.classList.contains('slider-track')) {
       if (this.entity?.config?.entity_id) {
-        // @ts-ignore
+        // @ts-ignore - 'hass-action' is a custom event not in the HASSDomEvents type definition
         fireEvent(this, 'hass-action', {
           config: {
             entity: this.entity.config.entity_id,
