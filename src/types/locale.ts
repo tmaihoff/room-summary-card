@@ -59,6 +59,7 @@ export type TranslationKey =
   | 'editor.show_entity_labels'
   | 'editor.skip_card_background_styles'
   | 'editor.skip_climate_styles'
+  | 'editor.add_brightness_slider'
   | 'editor.stats_styles'
   | 'editor.styles'
   | 'editor.temperature_entity'

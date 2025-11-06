@@ -12,6 +12,7 @@ import { CSSResult, LitElement, html, nothing, type TemplateResult } from 'lit';
 import { property, state } from 'lit/decorators.js';
 
 import { renderProblemIndicator, renderRoomIcon } from '@/html/icon';
+import { hasFeature } from '@config/feature';
 import { getRoomProperties } from '@delegates/utils/setup-card';
 import { fireEvent } from '@hass/common/dom/fire_event';
 import type { HomeAssistant } from '@hass/types';
@@ -221,9 +222,13 @@ export class RoomSummaryCard extends LitElement {
       this._sensors,
     );
 
+    const showBrightnessSlider =
+      hasFeature(this._config, 'add_brightness_slider') &&
+      this._roomEntity?.state?.entity_id?.startsWith('light.');
+
     return html`
       <ha-card style="${cardStyle}">
-        <div class="grid">
+        <div class="grid${showBrightnessSlider ? ' with-slider' : ''}">
           ${info(
             this,
             this._hass,
@@ -237,11 +242,17 @@ export class RoomSummaryCard extends LitElement {
           <!-- Room Icon -->
           ${roomEntity}
 
-          <!-- Entities Container -->
-          <entity-collection
-            .config=${this._config}
-            .hass=${this._hass}
-          ></entity-collection>
+          <!-- Entities Container or Brightness Slider -->
+          ${showBrightnessSlider
+            ? html`<brightness-slider
+                .config=${this._config}
+                .entity=${this._roomEntity}
+                .hass=${this._hass}
+              ></brightness-slider>`
+            : html`<entity-collection
+                .config=${this._config}
+                .hass=${this._hass}
+              ></entity-collection>`}
 
           <!-- Problem Indicator -->
           ${problems}
