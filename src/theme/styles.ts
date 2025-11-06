@@ -129,6 +129,14 @@ const gridLayoutStyles = css`
     position: relative; /* For absolute positioning of clickable area */
   }
 
+  .grid.with-slider {
+    grid-template-areas:
+      'i i i s'
+      'i i i s'
+      'r r . s'
+      'r r . s';
+  }
+
   .text {
     cursor: pointer;
   }
@@ -142,6 +150,10 @@ const gridLayoutStyles = css`
 
   entity-collection {
     grid-area: e;
+  }
+
+  brightness-slider {
+    grid-area: s;
   }
 
   /* Room area styling - Large square shape */
