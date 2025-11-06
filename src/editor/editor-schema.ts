@@ -521,6 +521,10 @@ const featuresSchema = (hass: HomeAssistant): HaFormSchema => {
                 label: localize(hass, 'editor.ignore_entity'),
                 value: 'ignore_entity',
               },
+              {
+                label: localize(hass, 'editor.add_brightness_slider'),
+                value: 'add_brightness_slider',
+              },
             ],
           },
         },

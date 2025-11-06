@@ -120,7 +120,8 @@ export type Features =
   | 'skip_climate_styles'
   | 'skip_entity_styles'
   | 'show_entity_labels'
-  | 'multi_light_background';
+  | 'multi_light_background'
+  | 'add_brightness_slider';
 
 /**
  * @file Occupancy Configuration Types

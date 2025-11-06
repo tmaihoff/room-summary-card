@@ -55,6 +55,22 @@ describe('feature', () => {
     expect(hasFeature(config, '' as any as Features)).to.be.true;
   });
 
+  it('should return true when add_brightness_slider feature is present', () => {
+    const config = {
+      area: '',
+      features: ['add_brightness_slider'],
+    } as Config;
+    expect(hasFeature(config, 'add_brightness_slider')).to.be.true;
+  });
+
+  it('should return false when add_brightness_slider feature is not present', () => {
+    const config = {
+      area: '',
+      features: ['hide_area_stats'],
+    } as Config;
+    expect(hasFeature(config, 'add_brightness_slider')).to.be.false;
+  });
+
   describe('hasEntityFeature', () => {
     it('should return true when entity is null', () => {
       expect(
